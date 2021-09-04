@@ -6,6 +6,6 @@ namespace MatchScripts
     {
         int ScoreReward { get; }
 
-        void ResolveMatchRule(Player firstPlayer, Player secondPlayer);
+        void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match);
     }
 }

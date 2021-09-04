@@ -10,7 +10,7 @@ namespace MatchScripts
         private readonly int _scoreReward = 2;
         public int ScoreReward => _scoreReward;
 
-        public void ResolveMatchRule(Player firstPlayer, Player secondPlayer)
+        public void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match)
         {
             if (firstPlayer.RacketHand == ERacketHand.Left)
             {

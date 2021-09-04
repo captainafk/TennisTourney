@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TournamentScripts;
 
 namespace IOScripts
 {
@@ -26,11 +27,32 @@ namespace IOScripts
                         var jObject = JObject.Parse(json);
 
                         IList<JToken> players = jObject["players"].Children().ToList();
-                        IList<JToken> tournaments = jObject["tournaments"].Children().ToList();
 
                         foreach (var player in players)
                         {
-                            var a = player["skills"];
+                            var racketHand = player["hand"].ToString() == "right" ? 
+                                                    ERacketHand.Right : ERacketHand.Left;
+
+                            var initialExperience = (int)player["experience"];
+
+                            var skillByCourtType = new Dictionary<ECourtType, int>();
+
+                            foreach (var skills in player["skills"])
+                            {
+                                var courtType = Court.CourtTypeMap[((JProperty)skills).Name];
+
+                                skillByCourtType[courtType] = (int)((JProperty)skills).Value;
+                            }
+
+                            var newPlayer = new Player(racketHand, initialExperience, skillByCourtType);
+                            Player.Players.Add(newPlayer);
+                        }
+
+                        IList<JToken> tournaments = jObject["tournaments"].Children().ToList();
+
+                        foreach (var tournament in tournaments)
+                        {
+
                         }
                     }
                 }

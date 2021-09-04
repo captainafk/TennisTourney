@@ -53,6 +53,7 @@
     <Compile Include="Scripts\MatchScripts\MatchRules\ExperienceMatchRule.cs" />
     <Compile Include="Scripts\MatchScripts\MatchRules\IMatchRule.cs" />
     <Compile Include="Scripts\MatchScripts\MatchRules\LeftHandMatchRule.cs" />
+    <Compile Include="Scripts\PlayerScripts\PlayerSet.cs" />
     <Compile Include="Scripts\TournamentScripts\ECourtType.cs" />
     <Compile Include="Scripts\IOScripts\IO.cs" />
     <Compile Include="Scripts\PlayerScripts\Player.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Scripts\PlayerScripts\ERacketHand.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournament.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournaments\EliminationTournament.cs" />
+    <Compile Include="Scripts\TournamentScripts\Tournaments\EliminationTournamentBase.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournaments\LeagueTournament.cs" />
   </ItemGroup>
   <ItemGroup>
