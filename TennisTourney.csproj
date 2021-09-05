@@ -62,7 +62,6 @@
     <Compile Include="Scripts\PlayerScripts\ERacketHand.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournament.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournaments\EliminationTournament.cs" />
-    <Compile Include="Scripts\TournamentScripts\Tournaments\EliminationTournamentBase.cs" />
     <Compile Include="Scripts\TournamentScripts\Tournaments\LeagueTournament.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,11 +7,6 @@ namespace TournamentScripts
     {
         public abstract ECourtType CourtType { get; set; }
 
-        protected Tournament(ECourtType courtType)
-        {
-            CourtType = courtType;
-        }
-
         public abstract void ResolveTournament(List<Player> players);
 
         public static List<Tournament> Tournaments = new List<Tournament>();
@@ -19,7 +14,7 @@ namespace TournamentScripts
 
     public static class TournamentCreator
     {
-        public static Tournament CreateTournament(string tournamentType, ECourtType courtType)
+        public static Tournament Create(string tournamentType, ECourtType courtType)
         {
             if (tournamentType == "elimination")
             {

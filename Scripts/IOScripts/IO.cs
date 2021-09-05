@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using PlayerScripts;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,11 +24,12 @@ namespace IOScripts
 
                         var jObject = JObject.Parse(json);
 
+                        // TODO: Add player id
                         IList<JToken> players = jObject["players"].Children().ToList();
 
                         foreach (var player in players)
                         {
-                            var racketHand = player["hand"].ToString() == "right" ? 
+                            var racketHand = player["hand"].ToString() == "right" ?
                                                     ERacketHand.Right : ERacketHand.Left;
 
                             var initialExperience = (int)player["experience"];
@@ -52,12 +51,15 @@ namespace IOScripts
 
                         foreach (var tournament in tournaments)
                         {
+                            var courtType = Court.CourtTypeMap[tournament["surface"].ToString()];
 
+                            var newTournament = TournamentCreator.Create(tournament["type"].ToString(),
+                                                                         courtType);
+                            Tournament.Tournaments.Add(newTournament);
                         }
                     }
                 }
             }
-
         }
     }
 }

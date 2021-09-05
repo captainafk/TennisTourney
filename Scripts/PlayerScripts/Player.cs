@@ -16,6 +16,7 @@ namespace PlayerScripts
         public ERacketHand RacketHand { get => _racketHand; }
         public Dictionary<ECourtType, int> SkillByCourtType { get => _skillByCourtType; }
         public int MatchScore { get => _matchScore; }
+        public int GainedExperience { get => _gainedExperience; }
 
         public Player(ERacketHand racketHand,
                       int initialExperience,
@@ -39,6 +40,11 @@ namespace PlayerScripts
         public void IncrementMatchScore(int score)
         {
             _matchScore += score;
+        }
+
+        public void GainExperience(int experience)
+        {
+            _gainedExperience += experience;
         }
     }
 }

@@ -14,6 +14,14 @@ namespace MatchScripts
 
         public Tournament Tournament { get => _tournament; }
 
+        public static List<IMatchRule> AllMatchRules = new List<IMatchRule>()
+        {
+            new BasicMatchRule(),
+            new LeftHandMatchRule(),
+            new ExperienceMatchRule(),
+            new CourtSkillMatchRule(),
+        };
+
         public Match(Player firstPlayer, Player secondPlayer,
                      Tournament tournament, List<IMatchRule> matchRules)
         {

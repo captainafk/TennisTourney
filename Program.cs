@@ -1,9 +1,7 @@
 ﻿using IOScripts;
+using PlayerScripts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TournamentScripts;
 
 namespace TennisTourney
 {
@@ -11,13 +9,19 @@ namespace TennisTourney
     /// Assumptions:
     /// 1. Experiences and skills are non-negative integers.
     /// 2. Court types on the input JSON are either "clay", "grass" or "hard".
+    /// 3. Tournament types on the input JSON are either "elimination" or "league".
     /// </summary>
-    class Program
+    internal class Program
     {
         [STAThread]
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             IO.ReadInputJSON();
+
+            foreach (var tournament in Tournament.Tournaments)
+            {
+                tournament.ResolveTournament(Player.Players);
+            }
         }
     }
 }
