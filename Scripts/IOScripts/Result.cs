@@ -1,4 +1,6 @@
-﻿namespace IOScripts
+﻿using System.Collections.Generic;
+
+namespace IOScripts
 {
     public class Result
     {
@@ -14,5 +16,10 @@
             gained_experience = gainedExperience;
             total_experience = totalExperience;
         }
+    }
+
+    public class OutputFile
+    {
+        public List<Result> results = new List<Result>();
     }
 }

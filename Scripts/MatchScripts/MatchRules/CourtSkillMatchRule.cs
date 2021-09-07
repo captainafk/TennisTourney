@@ -2,10 +2,12 @@
 
 namespace MatchScripts
 {
+    /// <summary>
+    /// The rule rewarding the more skilled player in that specific court type
+    /// </summary>
     public class CourtSkillMatchRule : IMatchRule
     {
-        private const int SCORE_REWARD = 4;
-        public int ScoreReward => SCORE_REWARD;
+        public int SCORE_REWARD => 4;
 
         public void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match)
         {

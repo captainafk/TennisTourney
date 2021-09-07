@@ -4,7 +4,7 @@ namespace MatchScripts
 {
     public interface IMatchRule
     {
-        int ScoreReward { get; }
+        int SCORE_REWARD { get; }
 
         void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match);
     }

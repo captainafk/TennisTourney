@@ -15,6 +15,7 @@ namespace IOScripts
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.CheckFileExists = true;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (openFileDialog.FileName.Trim() != string.Empty)
@@ -39,6 +40,11 @@ namespace IOScripts
 
                             foreach (var skills in player["skills"])
                             {
+                                if (!Court.CourtTypeMap.ContainsKey(((JProperty)skills).Name))
+                                {
+                                    throw new System.Exception("Court type named " + ((JProperty)skills).Name + " not found.");
+                                }
+
                                 var courtType = Court.CourtTypeMap[((JProperty)skills).Name];
 
                                 skillByCourtType[courtType] = (int)((JProperty)skills).Value;
@@ -76,7 +82,7 @@ namespace IOScripts
                 }
             );
 
-            var results = new List<Result>();
+            var outputFile = new OutputFile();
 
             for (int resultIndex = 0; resultIndex < players.Count; resultIndex++)
             {
@@ -86,18 +92,23 @@ namespace IOScripts
                                         player.PlayerID,
                                         player.GainedExperience,
                                         player.GetTotalExperience());
-                results.Add(result);
+
+                outputFile.results.Add(result);
             }
 
-            string outputJSON = JsonConvert.SerializeObject(results, Formatting.Indented);
+            string outputJSON = JsonConvert.SerializeObject(outputFile, Formatting.Indented);
 
-            SaveFileDialog sf = new SaveFileDialog();
-            sf.Filter = "Json files (*.json)|*.json";
-            sf.FilterIndex = 2;
-            sf.RestoreDirectory = true;
-            if (sf.ShowDialog() == DialogResult.OK)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Json files (*.json)|*.json";
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(sf.FileName, outputJSON);
+                if (saveFileDialog.FileName.Trim() != string.Empty)
+                {
+                    File.WriteAllText(saveFileDialog.FileName, outputJSON);
+                }
             }
         }
     }

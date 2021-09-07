@@ -14,12 +14,12 @@ namespace PlayerScripts
 
         public static List<Player> Players = new List<Player>();
 
+        public int PlayerID { get => _playerID; }
         public ERacketHand RacketHand { get => _racketHand; }
         public Dictionary<ECourtType, int> SkillByCourtType { get => _skillByCourtType; }
-        public int MatchScore { get => _matchScore; }
         public int InitialExperience { get => _initialExperience; }
         public int GainedExperience { get => _gainedExperience; }
-        public int PlayerID { get => _playerID; }
+        public int MatchScore { get => _matchScore; }
 
         public Player(int playerID,
                       ERacketHand racketHand,

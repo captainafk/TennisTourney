@@ -26,7 +26,7 @@ namespace TournamentScripts
             }
             else
             {
-                return null;
+                throw new System.Exception("Tournament type named " + tournamentType + " not found.");
             }
         }
     }
