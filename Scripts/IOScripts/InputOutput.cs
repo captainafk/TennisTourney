@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PlayerScripts;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ using TournamentScripts;
 
 namespace IOScripts
 {
-    public static class IO
+    public static class InputOutput
     {
         public static void ReadInputJSON()
         {
@@ -59,6 +60,44 @@ namespace IOScripts
                         }
                     }
                 }
+            }
+        }
+
+        public static void WriteOutputJSON(List<Player> players)
+        {
+            players.Sort(
+                delegate (Player firstPlayer, Player secondPlayer)
+                {
+                    if (firstPlayer.GainedExperience == secondPlayer.GainedExperience)
+                    {
+                        return secondPlayer.InitialExperience.CompareTo(firstPlayer.InitialExperience);
+                    }
+                    return secondPlayer.GainedExperience.CompareTo(firstPlayer.GainedExperience);
+                }
+            );
+
+            var results = new List<Result>();
+
+            for (int resultIndex = 0; resultIndex < players.Count; resultIndex++)
+            {
+                var player = players[resultIndex];
+
+                var result = new Result(resultIndex + 1,
+                                        player.PlayerID,
+                                        player.GainedExperience,
+                                        player.GetTotalExperience());
+                results.Add(result);
+            }
+
+            string outputJSON = JsonConvert.SerializeObject(results, Formatting.Indented);
+
+            SaveFileDialog sf = new SaveFileDialog();
+            sf.Filter = "Json files (*.json)|*.json";
+            sf.FilterIndex = 2;
+            sf.RestoreDirectory = true;
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(sf.FileName, outputJSON);
             }
         }
     }

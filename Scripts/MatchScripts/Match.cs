@@ -46,9 +46,9 @@ namespace MatchScripts
 
         private PlayerSet DetermineWinnerAndLoser(Player firstPlayer, Player secondPlayer)
         {
-            Random rand = new Random();
+            Random rnd = new Random();
 
-            if (rand.Next(1, firstPlayer.MatchScore + secondPlayer.MatchScore) <= firstPlayer.MatchScore)
+            if (rnd.Next(1, firstPlayer.MatchScore + secondPlayer.MatchScore) <= firstPlayer.MatchScore)
             {
                 return new PlayerSet(firstPlayer, secondPlayer);
             }

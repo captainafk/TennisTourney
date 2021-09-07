@@ -17,7 +17,9 @@ namespace PlayerScripts
         public ERacketHand RacketHand { get => _racketHand; }
         public Dictionary<ECourtType, int> SkillByCourtType { get => _skillByCourtType; }
         public int MatchScore { get => _matchScore; }
+        public int InitialExperience { get => _initialExperience; }
         public int GainedExperience { get => _gainedExperience; }
+        public int PlayerID { get => _playerID; }
 
         public Player(int playerID,
                       ERacketHand racketHand,

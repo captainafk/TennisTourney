@@ -16,12 +16,14 @@ namespace TennisTourney
         [STAThread]
         private static void Main(string[] args)
         {
-            IO.ReadInputJSON();
+            InputOutput.ReadInputJSON();
 
             foreach (var tournament in Tournament.Tournaments)
             {
                 tournament.ResolveTournament(Player.Players);
             }
+
+            InputOutput.WriteOutputJSON(Player.Players);
         }
     }
 }

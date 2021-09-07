@@ -7,13 +7,13 @@ namespace MatchScripts
     /// </summary>
     public class BasicMatchRule : IMatchRule
     {
-        private readonly int _scoreReward = 1;
-        public int ScoreReward => _scoreReward;
+        private const int SCORE_REWARD = 1;
+        public int ScoreReward => SCORE_REWARD;
 
         public void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match)
         {
-            firstPlayer.IncrementMatchScore(_scoreReward);
-            secondPlayer.IncrementMatchScore(_scoreReward);
+            firstPlayer.IncrementMatchScore(SCORE_REWARD);
+            secondPlayer.IncrementMatchScore(SCORE_REWARD);
         }
     }
 }

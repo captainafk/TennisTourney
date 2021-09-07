@@ -7,19 +7,19 @@ namespace MatchScripts
     /// </summary>
     public class LeftHandMatchRule : IMatchRule
     {
-        private readonly int _scoreReward = 2;
-        public int ScoreReward => _scoreReward;
+        private const int SCORE_REWARD = 2;
+        public int ScoreReward => SCORE_REWARD;
 
         public void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match)
         {
             if (firstPlayer.RacketHand == ERacketHand.Left)
             {
-                firstPlayer.IncrementMatchScore(_scoreReward);
+                firstPlayer.IncrementMatchScore(SCORE_REWARD);
             }
 
             if (secondPlayer.RacketHand == ERacketHand.Left)
             {
-                secondPlayer.IncrementMatchScore(_scoreReward);
+                secondPlayer.IncrementMatchScore(SCORE_REWARD);
             }
         }
     }

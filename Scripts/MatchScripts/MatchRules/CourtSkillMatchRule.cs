@@ -4,8 +4,8 @@ namespace MatchScripts
 {
     public class CourtSkillMatchRule : IMatchRule
     {
-        private readonly int _scoreReward = 4;
-        public int ScoreReward => _scoreReward;
+        private const int SCORE_REWARD = 4;
+        public int ScoreReward => SCORE_REWARD;
 
         public void ResolveMatchRule(Player firstPlayer, Player secondPlayer, Match match)
         {
@@ -15,11 +15,11 @@ namespace MatchScripts
 
             if (firstPlayerSkill > secondPlayerSkill)
             {
-                firstPlayer.IncrementMatchScore(_scoreReward);
+                firstPlayer.IncrementMatchScore(SCORE_REWARD);
             }
             else if (secondPlayerSkill > firstPlayerSkill)
             {
-                secondPlayer.IncrementMatchScore(_scoreReward);
+                secondPlayer.IncrementMatchScore(SCORE_REWARD);
             }
         }
     }
