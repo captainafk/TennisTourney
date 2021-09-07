@@ -25,21 +25,35 @@ namespace TournamentScripts
             var rnd = new Random();
             var playersInRandomOrder = players.OrderBy(player => rnd.Next()).ToList();
 
-            // TODO: Fix this so that every player plays simultaneously
-            for (int playerIndex = 0; playerIndex < players.Count; playerIndex++)
+            var numberOfMatches = 0;
+            var playerIndex = 0;
+            var opponentOffset = 1;
+
+            while (numberOfMatches < players.Count * (players.Count - 1) / 2)
             {
-                for (int opponentIndex = playerIndex + 1; opponentIndex < players.Count; opponentIndex++)
+                var opponentIndex = playerIndex + opponentOffset;
+
+                var match = new Match(playersInRandomOrder[playerIndex],
+                                      playersInRandomOrder[opponentIndex],
+                                      this,
+                                      Match.AllMatchRules);
+
+                var playerSet = match.ResolveMatch();
+
+                playerSet.WinnerPlayer.GainExperience(WIN_EXPERIENCE_REWARD);
+                playerSet.LoserPlayer.GainExperience(LOSE_EXPERIENCE_REWARD);
+
+                if (opponentIndex == players.Count - 1)
                 {
-                    var match = new Match(playersInRandomOrder[playerIndex],
-                                          playersInRandomOrder[opponentIndex],
-                                          this,
-                                          Match.AllMatchRules);
-
-                    var playerSet = match.ResolveMatch();
-
-                    playerSet.WinnerPlayer.GainExperience(WIN_EXPERIENCE_REWARD);
-                    playerSet.LoserPlayer.GainExperience(LOSE_EXPERIENCE_REWARD);
+                    playerIndex = 0;
+                    opponentOffset++;
                 }
+                else
+                {
+                    playerIndex++;
+                }
+
+                numberOfMatches++;
             }
         }
     }

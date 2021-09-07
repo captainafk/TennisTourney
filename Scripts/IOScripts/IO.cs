@@ -24,11 +24,11 @@ namespace IOScripts
 
                         var jObject = JObject.Parse(json);
 
-                        // TODO: Add player id
                         IList<JToken> players = jObject["players"].Children().ToList();
 
                         foreach (var player in players)
                         {
+                            var playerID = (int)player["id"];
                             var racketHand = player["hand"].ToString() == "right" ?
                                                     ERacketHand.Right : ERacketHand.Left;
 
@@ -43,7 +43,7 @@ namespace IOScripts
                                 skillByCourtType[courtType] = (int)((JProperty)skills).Value;
                             }
 
-                            var newPlayer = new Player(racketHand, initialExperience, skillByCourtType);
+                            var newPlayer = new Player(playerID, racketHand, initialExperience, skillByCourtType);
                             Player.Players.Add(newPlayer);
                         }
 

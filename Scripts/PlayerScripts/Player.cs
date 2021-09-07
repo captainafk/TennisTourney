@@ -5,6 +5,7 @@ namespace PlayerScripts
 {
     public class Player
     {
+        private int _playerID = 0;
         private ERacketHand _racketHand = ERacketHand.None;
         private Dictionary<ECourtType, int> _skillByCourtType;
         private int _initialExperience;
@@ -18,10 +19,12 @@ namespace PlayerScripts
         public int MatchScore { get => _matchScore; }
         public int GainedExperience { get => _gainedExperience; }
 
-        public Player(ERacketHand racketHand,
+        public Player(int playerID,
+                      ERacketHand racketHand,
                       int initialExperience,
                       Dictionary<ECourtType, int> skillByCourtType)
         {
+            _playerID = playerID;
             _racketHand = racketHand;
             _initialExperience = initialExperience;
             _skillByCourtType = skillByCourtType;
